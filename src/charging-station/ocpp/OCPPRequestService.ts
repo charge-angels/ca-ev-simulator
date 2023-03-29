@@ -156,6 +156,8 @@ export default abstract class OCPPRequestService {
       `${chargingStation.logPrefix()} ${moduleName}.validateRequestPayload: Command '${commandName}' request PDU is invalid: %j`,
       validate.errors
     );
+    console.error(JSON.stringify(payload, null, ' '));
+    console.error(JSON.stringify(validate.errors, null, ' '));
     // OCPPError usage here is debatable: it's an error in the OCPP stack but not targeted to sendError().
     throw new OCPPError(
       OCPPServiceUtils.ajvErrorsToErrorType(validate.errors),

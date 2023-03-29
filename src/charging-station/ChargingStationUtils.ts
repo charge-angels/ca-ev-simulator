@@ -268,15 +268,21 @@ export class ChargingStationUtils {
           upperCase: params.randomSerialNumberUpperCase,
         })
       : '';
-    stationInfo.chargePointSerialNumber =
-      Utils.isNotEmptyString(stationTemplate?.chargePointSerialNumberPrefix) &&
-      `${stationTemplate.chargePointSerialNumberPrefix}${serialNumberSuffix}`;
-    stationInfo.chargeBoxSerialNumber =
-      Utils.isNotEmptyString(stationTemplate?.chargeBoxSerialNumberPrefix) &&
-      `${stationTemplate.chargeBoxSerialNumberPrefix}${serialNumberSuffix}`;
-    stationInfo.meterSerialNumber =
-      Utils.isNotEmptyString(stationTemplate?.meterSerialNumberPrefix) &&
-      `${stationTemplate.meterSerialNumberPrefix}${serialNumberSuffix}`;
+    if (!stationInfo.chargePointSerialNumber) {
+      stationInfo.chargePointSerialNumber =
+        Utils.isNotEmptyString(stationTemplate?.chargePointSerialNumberPrefix) &&
+        `${stationTemplate.chargePointSerialNumberPrefix}${serialNumberSuffix}`;
+    }
+    if (!stationInfo.chargeBoxSerialNumber) {
+      stationInfo.chargeBoxSerialNumber =
+        Utils.isNotEmptyString(stationTemplate?.chargeBoxSerialNumberPrefix) &&
+        `${stationTemplate.chargeBoxSerialNumberPrefix}${serialNumberSuffix}`;
+    }
+    if (!stationInfo.meterSerialNumber) {
+      stationInfo.meterSerialNumber =
+        Utils.isNotEmptyString(stationTemplate?.meterSerialNumberPrefix) &&
+        `${stationTemplate.meterSerialNumberPrefix}${serialNumberSuffix}`;
+    }
   }
 
   public static propagateSerialNumber(
